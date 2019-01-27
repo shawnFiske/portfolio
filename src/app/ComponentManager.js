@@ -1,4 +1,4 @@
-export default class AppViewPort {
+export default class ComponentManager {
   
   constructor() {
     this.components = [];

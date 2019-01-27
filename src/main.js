@@ -1,12 +1,11 @@
 //Entry Point
-import WebApp from "./app/AppViewPort.js";
+import View from "./app/ComponentManager.js";
 import Grid from "./app/components/FlexGrid/FlexGrid.js";
 import CreateEl from "./app/utils/HtmlElementUtils.js";
 import EventConsts from "./app/utils/EventConstants.js";
 
-let app = new WebApp();
+let app = new View();
 let cel = new CreateEl();
-
 
 document.body.onload = init;
 
