@@ -1,0 +1,121 @@
+body {
+  padding: 3px 3px 3px 3px;
+  background-color: #e6e6e6;
+}
+
+header {
+  background-color: green;
+  height: 80px;
+}
+
+nav {
+  position: 0px;
+  height: 30px;
+  font-size: 28px;
+  text-align: top;
+}
+
+footer {
+  background-color: red;
+  height: 30px;
+  clear: both;
+  position: bottom;
+}
+
+section {
+
+}
+
+aside {
+  display: inline-block;
+  float: left;
+  width: 180;
+  height: 95%;
+  background-color: #e6e6e6;
+  //background-color: yellow;
+}
+
+a:link {
+    color: black;
+    font-size: 14;
+}
+
+a:visited {
+    color: #FF6600;
+}
+
+
+#content {
+  text-align: center;
+}
+
+#firstName {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 36;
+  padding-left: 35px;
+}
+
+#lastName {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 36;
+  padding-left: 35px;
+}
+
+#undecorateLi {
+  list-style-type: none;
+}
+
+#box {
+  background-color: orange;
+  width: 143px;
+  height: 5px;
+  margin-bottom: 15px;
+}
+
+#github {
+  position: bottom;
+  padding-left: 35px;
+  display: inline-block;
+}
+
+#linkin {
+  padding-left: 10px;
+  display: inline-block;
+}
+
+.links {
+  text-decoration: none;
+}
+
+.linkfont {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 12;
+}
+
+.FlexGrid {
+  display: inline-block;
+  width: 430px;
+  height: 430px;
+  margin: 0px 0px 25px 20px;
+  padding: 0px;
+  border-radius: 3px;
+  float: left;
+}
+.projectTitle {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 12;
+  font-weight: bold;
+  position: bottom;
+}
+
+.projectInfo {
+  position: relative;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 12;
+  z-index:999;
+  width: 150;
+  height: 180px;
+  background-color: #e6e6e6;
+  border-radius: 5px;
+}
+
