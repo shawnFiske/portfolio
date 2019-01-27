@@ -9,6 +9,7 @@ export default class Component extends HtmlUtils
     this.name;
   }
 
+  // Error is component does not contain a update method.
   update() {
     console.log("Error: Component does not contain a update method");
   }

@@ -3,11 +3,16 @@ export default class ComponentManager {
   constructor() {
     this.components = [];
   }
-  
-  test() {
-    return "test called: " + this.name;
-  }
 
+  //Register a compnent to the manager
+  // usage: 
+  // import View from "./app/ComponentManager.js";
+  // let app = new View();
+  //
+  // app.registerComponent("myFlexGrid", "view", FlexGridComp, data)
+  // app.updateComponentByName("myFlexGrid");
+  // or
+  // app.updateAllComponents();
   registerComponent(name, tag, Component, object) {
     let component = null;
     if(object == null || object == undefined) {
@@ -20,12 +25,14 @@ export default class ComponentManager {
       this.components.push(component);
   }
 
+  // Update all registers components
   updateAllComponents() {
     for(var i = 0; i < this.components.length; i++){
       this.components[i].update();
     }
   }
 
+  // update component by name
   updateComponentByName(name) {
     for(var i = 0; i < this.components.length; i++){
       if(this.components[i].name == name) {
