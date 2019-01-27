@@ -1,2 +1,6 @@
 # ignore an entire directory
 /node_modules/
+/.vscode/
+
+# ignore file list
+/settings.json

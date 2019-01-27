@@ -13,7 +13,7 @@ export default class FlexGrid extends Component {
     console.log('First Line...', this.data.length);
     
     const markup = `<section>
-        ${this.data.map(info => `<artical class="FlexGrid" id=${count += 1}>
+    ${this.data.map(info => `<artical class="FlexGrid" id=${count += 1}>
         <div>
           <a href="${info.projectUrl}" target="_blank">
             <img alt="${info.projectName}" src="${info.imageUrl}">
@@ -25,9 +25,7 @@ export default class FlexGrid extends Component {
         </artical>`).join('')}
       </section>`;
     
-    console.log("markup:  ", markup);
     this.addContentByClass(this.cls, markup); 
-
     cel.addEventByClass('FlexGrid', "mouseover", this.showDescription);
   }
 

@@ -1,7 +1,7 @@
 export default class AppViewPort {
   
   constructor() {
-    this.list = [];
+    this.components = [];
   }
   
   test() {
@@ -17,19 +17,19 @@ export default class AppViewPort {
       component = new Component(tag, object);
       component.name = name;
     }
-      this.list.push(component);
+      this.components.push(component);
   }
 
   updateAllComponents() {
-    for(var i = 0; i < this.list.length; i++){
-      this.list[i].update();
+    for(var i = 0; i < this.components.length; i++){
+      this.components[i].update();
     }
   }
 
   updateComponentByName(name) {
-    for(var i = 0; i < this.list.length; i++){
-      if(this.list[i].name == name) {
-        this.list[i].update();
+    for(var i = 0; i < this.components.length; i++){
+      if(this.components[i].name == name) {
+        this.components[i].update();
       }
     }
   }
