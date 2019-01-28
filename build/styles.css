@@ -3,11 +3,6 @@ body {
   background-color: #e6e6e6;
 }
 
-header {
-  background-color: green;
-  height: 80px;
-}
-
 nav {
   position: 0px;
   height: 30px;
@@ -20,18 +15,6 @@ footer {
   height: 30px;
   clear: both;
   position: bottom;
-}
-
-section {
-
-}
-
-aside {
-  display: inline-block;
-  float: left;
-  width: 180;
-  height: 100%;
-  background-color: #e6e6e6;
 }
 
 a:link {
@@ -91,6 +74,28 @@ a:visited {
   font-size: 12;
 }
 
+.Header {
+  background-color: rgb(211, 211, 211);
+  height: 30px;
+}
+
+.Main {
+  display: flex; 
+  background-color: rgb(211, 211, 211);
+}
+
+.RightSide {
+  display: flex; 
+  float: right;
+  width: 210;
+}
+
+.LeftSide {
+  display: flex; 
+  float: left;
+  width: 180;
+}
+
 .FlexGrid {
   display: inline-block;
   width: 430px;
@@ -113,7 +118,7 @@ a:visited {
   font-size: 12;
   z-index:999;
   width: 150;
-  height: 180px;
+  height: 100%;
   background-color: #e6e6e6;
   border-radius: 5px;
 }

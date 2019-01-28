@@ -29,7 +29,7 @@ function init(e) {
     cel.addEventByClass('test', EventConsts.CLICK_EVENT, eventCb);
 
     //Register FlexGrid component to manager 
-    app.registerComponent("myFlexGrid", "view", FlexGridComp, data)
+    app.registerComponent("myFlexGrid", "view", FlexGridComp, data);
     
     //call update on components
     app.updateAllComponents();
