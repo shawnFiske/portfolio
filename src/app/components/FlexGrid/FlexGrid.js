@@ -39,9 +39,10 @@ export default class FlexGrid extends Component {
         </artical>`).join('')}
     `;
 
-    markup += '<section><button class="pageDown">Previous Page</button><button class="pageUp">Next Page</button></section>';
+    markup += '<section><button class="pageDown"><</button><button class="pageUp">></button></section>';
     
     this.addContentByClass(this.cls, markup); 
+    
     cel.addEventByClass('FlexGrid', "mouseover", this.showDescription);
     cel.addEventByClass('pageDown', EventConsts.CLICK_EVENT, this.pageDown);
     cel.addEventByClass('pageUp', EventConsts.CLICK_EVENT, this.pageUp);
@@ -49,13 +50,14 @@ export default class FlexGrid extends Component {
 
   showDescription (event) {
     event.preventDefault();
-    console.log("element mouse over: ", event.currentTarget.getElementById("id").value, this.data[event.currentTarget.getElementById("id").value]);
+    console.log("element mouse over: ", event.currentTarget);
   }
 
   //Increament the pages
-  pageUp () {
-    console.log('Data Count...', this.currentMaxPage);
+  pageUp (event) {
+    console.log('Data Count...', this.currentMaxPage, event.currentTarget);
 
+    /*
     this.startpage += this.pageInc;
 
     if(startpage > this.data.lenght) {
@@ -64,12 +66,13 @@ export default class FlexGrid extends Component {
     this.currentMaxPage = this.startpage + this.pageInc;
 
     console.log("pageUp: "+ this.startpage +" max: "+ this.currentMaxPage);
+    */
   }
 
   //Decreament the pages
-  pageDown () {
-    console.log('Data Count...', this.currentMaxPage);
-
+  pageDown (event) {
+    console.log('Data Count...', this.currentMaxPage, event.currentTarget);
+    /*
     this.startpage = this.startpage - this.pageInc;
 
     if( this.startpage < 0) {
@@ -78,6 +81,7 @@ export default class FlexGrid extends Component {
     this.currentMaxPage = this.startpage + this.pageInc;
 
     console.log("pageDown: "+ this.startpage +" max: "+ this.currentMaxPage);
+    */
   }
 }
 
