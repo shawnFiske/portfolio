@@ -13,14 +13,16 @@ export default class ComponentManager {
   // app.updateComponentByName("myFlexGrid");
   // or
   // app.updateAllComponents();
-  registerComponent(name, tag, Component, object) {
+  registerComponent(name, tag, Component, pages = 0, object) {
     let component = null;
     if(object == null || object == undefined) {
       component = new Component(tag);
       component.name = name;
+      component.pageInc = pages;
     }else{
       component = new Component(tag, object);
       component.name = name;
+      component.pageInc = pages;
     }
       this.components.push(component);
   }
@@ -37,6 +39,14 @@ export default class ComponentManager {
     for(var i = 0; i < this.components.length; i++){
       if(this.components[i].name == name) {
         this.components[i].update();
+      }
+    }
+  }
+
+  updateComponentPageView(name, itemCount) {
+    for(var i = 0; i < this.components.length; i++){
+      if(this.components[i].name == name) {
+        this.components[i].pagInc = itemCount;
       }
     }
   }
