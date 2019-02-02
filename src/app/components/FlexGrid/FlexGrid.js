@@ -13,24 +13,27 @@ export default class FlexGrid extends Component {
     let count = -1;
     const newData = [];
 
-    console.log("page count", this.pageInc);
+    //newData = createPages (data, this.pageSize)
+    console.log("page count", this.pageSize);
 
-    //create component view page dataS
-    for(var index = this.currentPage; index < (this.currentPage + this.pageInc); index++) {
+    //*//create component view page data
+    for(var index = this.currentPage; index < (this.currentPage + this.pageSize); index++) {
       if(this.data[index] != undefined) { 
         newData.push(this.data[index]);
+        var answer = this.pageSize % index;
+        console.log("answer = ",answer, index);
       }
-    };
+    };//*/
 
     //create html and populate data
     var markup = `
-    ${newData.map(info => `<artical class="FlexGrid" id=${count += 1}>
+    ${newData.map(info => `<artical class='FlexGrid' id=${count += 1}>
         <div>
-          <a href="${info.projectUrl}" target="_blank">
-            <img alt="${info.projectName}" src="${info.imageUrl}">
+          <a href='${info.projectUrl}' target='_blank'>
+            <img alt='${info.projectName}' src='${info.imageUrl}'>
           </a>
         </div>
-        <span class="projectTitle">
+        <span class='projectTitle'>
               ${info.projectName}
         </span>
         </artical>`).join('')}
@@ -39,8 +42,21 @@ export default class FlexGrid extends Component {
     this.addContentByClass(this.cls, markup); 
     
     //cel.addEventByClass('FlexGrid', "mouseover", this.showDescription);
-    cel.addEventByClass('FlexGridPageDown', EventConsts.CLICK_EVENT, this.pageDown.bind(this, this.currentPage, this.pageInc, this.data.length));
-    cel.addEventByClass('FlexGridPageUp', EventConsts.CLICK_EVENT, this.pageUp.bind(this, this.currentPage, this.pageInc, this.data.length));
+    cel.addEventByClass('FlexGridPageDown', EventConsts.CLICK_EVENT, this.pageDown.bind(this, this.currentPage, this.pageSize, this.data.length));
+    cel.addEventByClass('FlexGridPageUp', EventConsts.CLICK_EVENT, this.pageUp.bind(this, this.currentPage, this.pageSize, this.data.length));
+  }
+
+  createPages (data, perPage) {
+    var pageData = [];
+    var pages = [];
+
+    for(var index = 0; index < data.length; index++) {
+      if(index < perPage) { 
+        pageData.push(data[index]);
+      }
+    };
+
+    return pageData;
   }
 
   showDescription (data) {
@@ -49,21 +65,21 @@ export default class FlexGrid extends Component {
   }
 
   //Increament the pages
-  pageUp (currentPage, pageInc, size) {
+  pageUp (currentPage, pageSize, size) {
 
-    this.currentPage = this.currentPage + this.pageInc;
+    this.currentPage = this.currentPage + this.pageSize;
 
-    if( (this.currentPage + this.pageInc) > size) {
-      this.currentPage = size - this.pageInc;
+    if( (this.currentPage + this.pageSize) > size) {
+      this.currentPage = size - this.pageSize;
     }
 
     this.update();
   }
 
   //Decreament the pages
-  pageDown (currentPage, pageInc, size) {
+  pageDown (currentPage, pageSize, size) {
  
-    this.currentPage = this.currentPage - this.pageInc;
+    this.currentPage = this.currentPage - this.pageSize;
 
     if( this.currentPage < 0) {
       this.currentPage = 0;

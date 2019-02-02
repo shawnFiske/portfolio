@@ -8,7 +8,7 @@ export default class Component extends HtmlUtils
     this.cls = cls;
     this.name;
     this.currentPage = 0;
-    this.pageInc;
+    this.pageSize;
   }
 
   // Error is component does not contain a update method.
