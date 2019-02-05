@@ -14,18 +14,19 @@ export default class FlexGrid extends Component {
     const newData = [];
 
     //newData = createPages (data, this.pageSize)
-    console.log("page count", this.pageSize);
+    //console.log("page count", this.pageSize);
+
+    console.dir(this.createPages(this.data, this.pageSize));
 
     //*//create component view page data
     for(var index = this.currentPage; index < (this.currentPage + this.pageSize); index++) {
       if(this.data[index] != undefined) { 
         newData.push(this.data[index]);
-        var answer = this.pageSize % index;
-        console.log("answer = ",answer, index);
       }
     };//*/
 
     //create html and populate data
+    //TODO: make template external to component
     var markup = `
     ${newData.map(info => `<artical class='FlexGrid' id=${count += 1}>
         <div>
@@ -46,16 +47,33 @@ export default class FlexGrid extends Component {
     cel.addEventByClass('FlexGridPageUp', EventConsts.CLICK_EVENT, this.pageUp.bind(this, this.currentPage, this.pageSize, this.data.length));
   }
 
-  createPages (data, perPage) {
+  createPages (data, pageSize) {
     var pageData = [];
-    var pages = [];
+    pageData[0] = [];
+    var page = [];
+    var pageNumber = 0;
+    var currentPage = 0;
+
+    console.log("array size: ", data.length, pageSize, data.length/pageSize);
 
     for(var index = 0; index < data.length; index++) {
-      if(index < perPage) { 
-        pageData.push(data[index]);
+      if(pageNumber < pageSize) { 
+        page.push(data[index]);
+        console.log("pages: ", index, currentPage, pageNumber);
+        pageNumber += 1;
+      }else{
+        currentPage += 1;
+        pageNumber = 0;
+        console.dir(page);
+        console.log("pages: ", index, currentPage, pageNumber);
+        //pageData[currentPage][pageNumber].push(page);
+        console.log("test..");
+        page = [];
+        page.push(data[index]);
+        pageNumber += 1;
       }
     };
-
+    pageData[currentPage][pageNumber] = page;
     return pageData;
   }
 
