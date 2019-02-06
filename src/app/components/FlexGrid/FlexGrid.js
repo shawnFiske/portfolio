@@ -2,6 +2,12 @@ import Component from "../Component.js";
 import CreateEl from "../../../app/utils/HtmlElementUtils.js";
 import EventConsts from "../../../app/utils/EventConstants.js";
 
+////////////////////////////////////////////////////////////////////////////////////
+// Flex Grid Component:
+// Usage:
+// app.registerComponent("<name>", "<id of tag>", <Flexgrid instance>, <num shown on each page>, <JSON data>);
+//
+////////////////////////////////////////////////////////////////////////////////////
 export default class FlexGrid extends Component {
   constructor(cls, data) {
     super(cls, data);
@@ -96,7 +102,7 @@ export default class FlexGrid extends Component {
 
   //Decreament the pages
   pageDown (currentPage, pageSize, size) {
- 
+    
     this.currentPage = this.currentPage - this.pageSize;
 
     if( this.currentPage < 0) {
