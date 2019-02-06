@@ -14,27 +14,22 @@ export default class FlexGrid extends Component {
   }
 
   //called when component needs to be rebuilt
-  update(){
+  update(currentPage = 0){
     let cel = new CreateEl();
     let count = -1;
-    const newData = [];
+    var newData = null;
 
-    //newData = createPages (data, this.pageSize)
-    //console.log("page count", this.pageSize);
+    if(newData == null) {
+      newData = this.createPages(this.data, this.pageSize);
+    }
 
-    console.dir(this.createPages(this.data, this.pageSize));
-
-    //*//create component view page data
-    for(var index = this.currentPage; index < (this.currentPage + this.pageSize); index++) {
-      if(this.data[index] != undefined) { 
-        newData.push(this.data[index]);
-      }
-    };//*/
+    //console.dir(newData);
+    console.log(currentPage);
 
     //create html and populate data
     //TODO: make template external to component
     var markup = `
-    ${newData.map(info => `<artical class='FlexGrid' id=${count += 1}>
+    ${newData[currentPage].map(info => `<artical class='FlexGrid' id=${count += 1}>
         <div>
           <a href='${info.projectUrl}' target='_blank'>
             <img alt='${info.projectName}' src='${info.imageUrl}'>
@@ -49,37 +44,24 @@ export default class FlexGrid extends Component {
     this.addContentByClass(this.cls, markup); 
     
     //cel.addEventByClass('FlexGrid', "mouseover", this.showDescription);
-    cel.addEventByClass('FlexGridPageDown', EventConsts.CLICK_EVENT, this.pageDown.bind(this, this.currentPage, this.pageSize, this.data.length));
-    cel.addEventByClass('FlexGridPageUp', EventConsts.CLICK_EVENT, this.pageUp.bind(this, this.currentPage, this.pageSize, this.data.length));
+    cel.addEventByClass('FlexGridPageDown', EventConsts.CLICK_EVENT, this.pageDown.bind(this, currentPage, Math.ceil(this.data.length/this.pageSize)));
+    cel.addEventByClass('FlexGridPageUp', EventConsts.CLICK_EVENT, this.pageUp.bind(this, currentPage, Math.ceil(this.data.length/this.pageSize)));
   }
 
   createPages (data, pageSize) {
-    var pageData = [];
-    pageData[0] = [];
-    var page = [];
-    var pageNumber = 0;
+    var pageData = new Array(Math.ceil(data.length/pageSize));
     var currentPage = 0;
 
-    console.log("array size: ", data.length, pageSize, data.length/pageSize);
-
-    for(var index = 0; index < data.length; index++) {
-      if(pageNumber < pageSize) { 
-        page.push(data[index]);
-        console.log("pages: ", index, currentPage, pageNumber);
-        pageNumber += 1;
-      }else{
+    console.log("array size: ", data.length, pageSize, Math.ceil(data.length/pageSize));
+    for (var index = 0; index < data.length/pageSize; ++index) {
+      pageData[index] = new Array(pageSize);
+      for (var pageIndex = 0; pageIndex < pageSize; ++pageIndex){
         currentPage += 1;
-        pageNumber = 0;
-        console.dir(page);
-        console.log("pages: ", index, currentPage, pageNumber);
-        //pageData[currentPage][pageNumber].push(page);
-        console.log("test..");
-        page = [];
-        page.push(data[index]);
-        pageNumber += 1;
+        if(data[currentPage] != undefined) {
+          pageData[index][pageIndex] = data[currentPage];
+        }
       }
-    };
-    pageData[currentPage][pageNumber] = page;
+    }
     return pageData;
   }
 
@@ -89,27 +71,27 @@ export default class FlexGrid extends Component {
   }
 
   //Increament the pages
-  pageUp (currentPage, pageSize, size) {
+  pageUp (currentPage, numPages) {
+    
+    currentPage += 1;
 
-    this.currentPage = this.currentPage + this.pageSize;
-
-    if( (this.currentPage + this.pageSize) > size) {
-      this.currentPage = size - this.pageSize;
+    if(currentPage > numPages) {
+      currentPage = numPages - 1;
     }
 
-    this.update();
+    this.update(currentPage);
   }
 
   //Decreament the pages
-  pageDown (currentPage, pageSize, size) {
+  pageDown (currentPage, numPages) {
     
-    this.currentPage = this.currentPage - this.pageSize;
+    currentPage -= 1;
 
-    if( this.currentPage < 0) {
-      this.currentPage = 0;
+    if(currentPage < 0) {
+      currentPage = 0;
     }
 
-    this.update();
+    this.update(currentPage);
   }
 }
 
