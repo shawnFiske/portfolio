@@ -11,25 +11,32 @@ import EventConsts from "../../../app/utils/EventConstants.js";
 export default class FlexGrid extends Component {
   constructor(cls, data) {
     super(cls, data);
+
+    this.newData = null;
   }
 
   //called when component needs to be rebuilt
-  update(currentPage = 0){
+  update(){
+    this.buildPage();
+  }
+
+  buildPage(currentPage = 0) {
     let cel = new CreateEl();
     let count = -1;
-    var newData = null;
+    
 
-    if(newData == null) {
-      newData = this.createPages(this.data, this.pageSize);
+    if(this.newData == null) {
+      console.log("build pages");
+      this.newData = this.createPages(this.data, this.pageSize);
     }
 
-    //console.dir(newData);
-    console.log(currentPage);
+    console.dir(this.newData);
+    console.log("stuff", currentPage);
 
     //create html and populate data
     //TODO: make template external to component
     var markup = `
-    ${newData[currentPage].map(info => `<artical class='FlexGrid' id=${count += 1}>
+    ${this.newData[currentPage].map(info => `<artical class='FlexGrid' id=${count += 1}>
         <div>
           <a href='${info.projectUrl}' target='_blank'>
             <img alt='${info.projectName}' src='${info.imageUrl}'>
@@ -79,7 +86,7 @@ export default class FlexGrid extends Component {
       currentPage = numPages - 1;
     }
 
-    this.update(currentPage);
+    this.buildPage(currentPage);
   }
 
   //Decreament the pages
@@ -91,7 +98,7 @@ export default class FlexGrid extends Component {
       currentPage = 0;
     }
 
-    this.update(currentPage);
+    this.buildPage(currentPage);
   }
 }
 
