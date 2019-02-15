@@ -60,6 +60,7 @@ export default class FlexGrid extends Component {
     var currentPage = 0;
 
     console.log("array size: ", data.length, pageSize, Math.ceil(data.length/pageSize));
+    
     for (var index = 0; index < data.length/pageSize; ++index) {
       pageData[index] = new Array(pageSize);
       for (var pageIndex = 0; pageIndex < pageSize; ++pageIndex){
@@ -78,11 +79,12 @@ export default class FlexGrid extends Component {
   }
 
   //Increament the pages
-  pageUp (currentPage, numPages) {
-    
+  pageUp (event, currentPage, numPages) {
+    event.preventDefault();
+
     currentPage += 1;
 
-    if(currentPage > numPages) {
+    if(currentPage == numPages) {
       currentPage = numPages - 1;
     }
 
@@ -90,8 +92,9 @@ export default class FlexGrid extends Component {
   }
 
   //Decreament the pages
-  pageDown (currentPage, numPages) {
-    
+  pageDown (event,  currentPage, numPages) {
+    event.preventDefault();
+
     currentPage -= 1;
 
     if(currentPage < 0) {
