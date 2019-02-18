@@ -17,6 +17,7 @@ export default class FlexGrid extends Component {
 
   //called when component needs to be rebuilt
   update(){
+    this.newData = this.createPages(this.data, this.pageSize);
     this.buildPage();
   }
 
@@ -27,7 +28,7 @@ export default class FlexGrid extends Component {
 
     if(this.newData == null) {
       console.log("build pages");
-      this.newData = this.createPages(this.data, this.pageSize);
+      //this.newData = this.createPages(this.data, this.pageSize);
     }
 
     console.dir(this.newData);
@@ -80,7 +81,7 @@ export default class FlexGrid extends Component {
 
   //Increament the pages
   pageUp (event, currentPage, numPages) {
-    event.preventDefault();
+    //event.preventDefault();
 
     currentPage += 1;
 
@@ -93,7 +94,7 @@ export default class FlexGrid extends Component {
 
   //Decreament the pages
   pageDown (event,  currentPage, numPages) {
-    event.preventDefault();
+    //event.preventDefault();
 
     currentPage -= 1;
 
