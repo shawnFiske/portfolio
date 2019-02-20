@@ -3,9 +3,11 @@ import View from "./app/ComponentManager.js";
 import FlexGridComp from "./app/components/FlexGrid/FlexGrid.js";
 import CreateEl from "./app/utils/HtmlElementUtils.js";
 import EventConsts from "./app/utils/EventConstants.js";
+import EventManager from "./app/events/EventManager.js";
 
 let app = new View();
 let cel = new CreateEl();
+let em = new EventManager();
 
 document.body.onload = init;
 
@@ -79,6 +81,11 @@ function init(e) {
     //call update on components
     app.updateAllComponents();
     //app.updateComponentByName("myFlexGrid");
+
+    em.on('foo', () => { console.log('foo test'); });
+    em.emit('foo'); // Prints "foo"
+    em.off('foo');
+    em.emit('foo'); // Nothing will happen
 }
 
 function eventCb(event)
